@@ -7,7 +7,7 @@ var authFile = './auth.json';
 var tickLength = 500;
 var maxGameLength = 1000;
 var port = 8037;
-var mapSize = [13,13];
+var mapSize = [10,10];
 var maxPlayers = 6;
 var bombTimer = 5;
 var bombRadius = 3;
@@ -329,6 +329,9 @@ function game(initialPlayers) {
 			players[id].status = 'REGISTERED';
 			players[id].name = escape(strings[0]);
 			sendMessage(id, 'REGISTERED');
+			if(setStart()) {
+				broadcast('STARTED');
+			}
 		} else {
 			sendMessage(id, 'E_WRONG_PASS');
 		}
@@ -375,6 +378,10 @@ function game(initialPlayers) {
 			sendMessage(id, 'E_NOT_PLAYING');
 		}
 	};
+
+	var setStart = function() {
+		return true;
+	}
 
 	this.handleCommand = function(id, command) {
 		var strings = command.split(' ');
