@@ -8,7 +8,8 @@ var tickLength = 500;
 var maxGameLength = 1000;
 var port = 8037;
 var mapSize = [10,10];
-var maxPlayers = 6;
+var maxPlayers = 2;
+var minPlayers = 2;
 var bombTimer = 5;
 var bombRadius = 3;
 
@@ -380,7 +381,11 @@ function game(initialPlayers) {
 	};
 
 	var setStart = function() {
-		return true;
+		if(players.length ==  minPlayers) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	this.handleCommand = function(id, command) {
