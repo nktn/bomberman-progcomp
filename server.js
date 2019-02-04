@@ -116,8 +116,10 @@ function game(initialPlayers) {
 		console.log('Connected players:');
 		console.log(players);
 		state = 0;
-		broadcast('TICK ' + state);
-		intervals.push(setInterval(tick, tickLength));
+		if(setStart()) {
+			broadcast('TICK ' + state);
+			intervals.push(setInterval(tick, tickLength));
+		}
 	};
 
 	var tick = function() {
