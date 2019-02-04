@@ -383,7 +383,7 @@ function game(initialPlayers) {
 	};
 
 	var setStart = function() {
-		if(players.length ==  minPlayers) {
+		if(clients.length ==  minPlayers) {
 			return true;
 		} else {
 			return false;
